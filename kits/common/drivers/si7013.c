@@ -15,7 +15,7 @@
 
 
 #include "si7013.h"
-#include "i2cdrv.h"
+#include "i2c1drv.h"
 
 /*******************************************************************************
  *******************************   DEFINES   ***********************************
@@ -77,7 +77,7 @@ static int Si7013_Measure(I2C_TypeDef *i2c, uint8_t addr, uint32_t *data,
   seq.buf[1].data = i2c_read_data;
   seq.buf[1].len  = 2;
 
-  ret = I2CDRV_Transfer(&seq);
+  ret = I2C1DRV_Transfer(&seq);
 
   if (ret != i2cTransferDone)
   {
@@ -165,7 +165,7 @@ bool Si7013_Detect(I2C_TypeDef *i2c, uint8_t addr)
   seq.buf[1].data = i2c_read_data;
   seq.buf[1].len  = 8;
 
-  ret = I2CDRV_Transfer(&seq);
+  ret = I2C1DRV_Transfer(&seq);
   if (ret != i2cTransferDone)
   {
     return(false);
